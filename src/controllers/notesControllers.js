@@ -31,6 +31,25 @@ export async function DeleteNote(req, res) {
   }
 }
 
+export async function EditNote(req, res) {
+  const { id } = req.params;
+  const { title, description, date } = req.body;
+
+  try {
+    await db
+      .collection("notes")
+      .updateOne(
+        { _id: new ObjectId(id) },
+        { $set: { title, description, date } }
+      );
+
+    const notes = await db.collection("notes").find({}).toArray();
+    res.status(200).send(notes);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+}
+
 export async function ListNotes(req, res) {
   try {
     const notes = await db.collection("notes").find({}).toArray();
@@ -41,20 +60,16 @@ export async function ListNotes(req, res) {
   }
 }
 
-export async function EditNote(req, res) {
+export async function GetNote(req, res) {
   const { id } = req.params;
-  const { title, description, date } = req.body;
 
   try {
-    await db
+    const note = await db
       .collection("notes")
-      .updateOne(
-        { _id: new ObjectId(_id) },
-        { $set: { title, description, date } }
-      );
+      .find({ _id: new ObjectId(id) })
+      .toArray();
 
-    const notes = await db.collection("notes").find({}).toArray();
-    res.status(200).send(notes);
+    res.status(200).send(note);
   } catch (error) {
     res.sendStatus(500);
   }
