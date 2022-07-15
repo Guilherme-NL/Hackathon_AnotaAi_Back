@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import cors from "cors";
 import notesRouter from "./routes/notesRouter.js";
+import authRouter from "./routes/authRouter.js";
 import dotenv from "dotenv";
 
 dotenv.config();
