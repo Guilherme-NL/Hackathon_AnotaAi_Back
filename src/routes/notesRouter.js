@@ -5,14 +5,14 @@ import {
   DeleteNote,
   EditNote,
   GetNote,
-} from "../controllers/notesController.js";
+} from "../controllers/notesControllers.js";
 
 const router = Router();
 
 router.post("/notes", AddNote);
 router.get("/notes", ListNotes);
 router.get("/notes/:id", GetNote);
-router.update("/notes/:id", EditNote);
+router.put("/notes/:id", EditNote);
 router.delete("/notes/:id", DeleteNote);
 
 export default router;
