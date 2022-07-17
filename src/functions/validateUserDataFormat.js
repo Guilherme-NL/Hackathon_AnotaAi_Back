@@ -1,4 +1,4 @@
-import { userDataSchema } from "../schemas/schemas.js";
+import { userDataSchema } from "./../schemas/authSchemas.js";
 
 export default function validateUserDataFormat(user) {
     let validationResult = userDataSchema.validate(user).error === undefined;

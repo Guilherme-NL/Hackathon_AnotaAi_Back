@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import { validateRegistrationData, createNewUser, verifyUserExistence, createUserSession, getUserName, sendLogOutRequisition } from "../models/user.js";
+import { validateRegistrationData, createNewUser, verifyUserExistence, createUserSession, getUserName, sendLogOutRequisition } from "./../dbStrategy/mongo.js";
 import validateUserDataFormat from "../functions/validateUserDataFormat.js";
 export async function signUp(req, res) {
   let registrationData = req.body;
